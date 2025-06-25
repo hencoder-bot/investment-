@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group Investment Strategy Project</title>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideInUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background: url('https://th.bing.com/th/id/OIP.PH9b99HPaxUlEvtTkE1TSAAAAA?w=157&h=180&c=7&r=0&o=5&pid=1.7') no-repeat center center fixed;
+            background-size: 90%; /* Reduce the size of the background image by 10% */
+            animation: fadeIn 2s ease-in-out;
+        }
+        .logo {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            z-index: 1; /* Ensure the logo is in front of other content */
+            animation: slideInUp 1s ease-in-out;
+        }
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            color: rgb(73, 128, 0);
+            margin-right: 120px; /* Adjust to avoid overlap with logo */
+            animation: fadeIn 2s ease-in-out;
+            background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .goal {
+            margin-top: 10px;
+            background-color: rgba(0, 162, 255, 0.7); /* Semi-transparent blue background */
+            padding: 10px;
+            border-radius: 5px;
+            color: white;
+            animation: slideInUp 1s ease-in-out;
+        }
+        .description {
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
+            padding: 20px;
+            border-radius: 5px;
+            color: black;
+            animation: fadeIn 2s ease-in-out;
+        }
+        .input-group, .result {
+            margin-top: 10px;
+            background-color: rgba(255, 165, 0, 0.7); /* Semi-transparent orange background */
+            padding: 10px;
+            border-radius: 5px;
+            color: black;
+        }
+        .result {
+            margin-top: 20px;
+            background-color: rgba(255, 0, 106, 0.7); /* Semi-transparent red background */
+            padding: 10px;
+            border-radius: 5px;
+            color: white;
+            animation: slideInUp 1s ease-in-out;
+        }
+        .profit-before-maintenance {
+            background-color: rgba(79, 128, 0, 0.7); /* Semi-transparent green background */
+            padding: 5px;
+            border-radius: 5px;
+            color: white;
+        }
+        .profit-after-maintenance {
+            background-color: rgba(183, 0, 255, 0.7); /* Semi-transparent blue background */
+            padding: 5px;
+            border-radius: 5px;
+            color: white;
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+        .navigation {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <img src="https://th.bing.com/th/id/OIP.uHxJezSgaAtb6v4F-ABepgHaEP?w=612&h=350&rs=1&pid=ImgDetMain" alt="Logo" class="logo">
+    <div id="page1" class="page active">
+        <div class="title">THE GROUP INVESTMENT STRATEGY PROJECT PROGRAM</div>
+        <div class="goal">
+            <p>GOAL: TO ENABLE INVESTMENT POSSIBILITY FOR SMALL INCOME EARNERS</p>
+            <p>ENCOURAGING FAIR AND TRUSTWORTHY SHARES AND PROFIT DISTRIBUTION AMONG SHAREHOLDERS</p>
+            <p>AS TO MAINTAIN AND EXPAND TO INCREASE THE DAILY CASH FLOW OF THE CORE MEMBER</p>
+        </div>
+        <div class="description">
+            <h2>The Importance of Joint Investment</h2>
+            <p>Joint investment, also known as group investment, is a strategy where multiple individuals pool their resources together to invest in a common venture. This approach has gained popularity due to its numerous advantages and the ability to achieve financial goals that might be challenging for individuals to accomplish alone.</p>
+            <p>One of the primary benefits of joint investment is the ability to pool resources. By combining funds, investors can access larger and more lucrative investment opportunities that would be out of reach for a single investor. This collective approach allows for diversification, reducing the risk associated with investing in a single asset or venture.</p>
+            <p>Another significant advantage of joint investment is the sharing of knowledge and expertise. Each investor brings their unique skills, experiences, and insights to the table, enhancing the overall decision-making process. This collaborative effort can lead to more informed and strategic investment choices, ultimately increasing the potential for higher returns.</p>
+            <p>Joint investment also fosters a sense of community and shared responsibility. Investors are more likely to stay committed and motivated when they are part of a group working towards a common goal. This sense of camaraderie can lead to better communication, accountability, and support among group members, creating a positive and productive investment environment.</p>
+            <p>Furthermore, joint investment can provide access to professional management and advisory services. By pooling resources, investors can afford to hire experienced fund managers or financial advisors who can help navigate the complexities of the investment landscape. This professional guidance can be invaluable in maximizing returns and minimizing risks.</p>
+            <p>In addition to financial benefits, joint investment can also lead to personal growth and development. Being part of an investment group allows individuals to learn from each other, gain new perspectives, and develop their financial literacy. This continuous learning process can empower investors to make more informed decisions and improve their overall financial well-being.</p>
+            <p>Lastly, joint investment can create opportunities for social impact. By investing collectively, groups can support projects and ventures that align with their values and contribute to positive social change. This can include investments in sustainable businesses, community development projects, or initiatives that promote economic empowerment.</p>
+            <p>In conclusion, joint investment offers numerous advantages, including resource pooling, knowledge sharing, community building, access to professional management, personal growth, and social impact. By working together, investors can achieve their financial goals more effectively and create a positive and lasting impact on their communities.</p>
+        </div>
+        <div class="navigation">
+            <button onclick="showPage(2)">Next</button>
+        </div>
+    </div>
+    <div id="page2" class="page">
+        <div class="input-group">
+            <label for="invester1">Enter the amount of money you like to join the investment team with (Investor 1): </label>
+            <input type="number" id="invester1"><br>
+            <label for="invester2">Enter the amount of money you like to join the investment team with (Investor 2): </label>
+            <input type="number" id="invester2"><br>
+            <label for="invester3">Enter the amount of money you like to join the investment team with (Investor 3): </label>
+            <input type="number" id="invester3"><br>
+            <label for="invester4">Enter the amount of money you like to join the investment team with (Investor 4): </label>
+            <input type="number" id="invester4"><br>
+            <label for="invester5">Enter the amount of money you like to join the investment team with (Investor 5): </label>
+            <input type="number" id="invester5"><br>
+            <label for="invester6">Enter the amount of money you like to join the investment team with (Investor 6): </label>
+            <input type="number" id="invester6"><br>
+            <label for="invester7">Enter the amount of money you like to join the investment team with (Investor 7): </label>
+            <input type="number" id="invester7"><br>
+            <label for="invester8">Enter the amount of money you like to join the investment team with (Investor 8): </label>
+            <input type="number" id="invester8"><br>
+            <label for="invester9">Enter the amount of money you like to join the investment team with (Investor 9): </label>
+            <input type="number" id="invester9"><br>
+            <label for="invester10">Enter the amount of money you like to join the investment team with (Investor 10): </label>
+            <input type="number" id="invester10"><br>
+            <label for="general_profit">Enter the general profit to be distributed to the investors: </label>
+            <input type="number" id="general_profit"><br>
+        </div>
+        <div class="navigation">
+            <button onclick="showPage(1)">Back</button>
+            <button onclick="showPage(3)">Next</button>
+        </div>
+    </div>
+    <div id="page3" class="page">
+        <div class="result" id="result"></div>
+        <div class="navigation">
+            <button onclick="showPage(2)">Back</button>
+            <button onclick="calculateProfits()">Calculate Profits</button>
+        </div>
+        <div class="description">
+            <h2>About the Author</h2>
+            <p>
+                <strong>Opio Rogers Henry</strong> is a highly skilled professional with a diverse background in various fields. He is a Data Scientist, Police Officer, Computer Programmer, Web Designer, Data Analyst, and a Sunday School Teacher at St. Stephens Nsambya. His extensive experience and expertise make him a valuable resource for anyone seeking innovative business ideas and strategies.
+            </p>
+            <p>
+                With a strong foundation in data science and analysis, Opio Rogers Henry has the ability to turn complex data into actionable insights, helping businesses make informed decisions. His programming and web design skills enable him to create robust and user-friendly applications that meet the needs of modern businesses.
+            </p>
+            <p>
+                As a Police Officer, he brings a unique perspective on security and risk management, ensuring that business operations are not only efficient but also secure. His role as a Sunday School Teacher demonstrates his commitment to community service and his ability to communicate effectively with people of all ages.
+            </p>
+            <p>
+                Opio Rogers Henry is always open to discussing new business ideas and opportunities. His multidisciplinary expertise makes him an ideal partner for collaborative projects aimed at driving innovation and growth. Feel free to reach out to him for consultations, collaborations, or any business-related inquiries.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageNumber) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(`page${pageNumber}`).classList.add('active');
+        }
+
+        function calculateProfits() {
+            const invester1 = parseFloat(document.getElementById('invester1').value);
+            const invester2 = parseFloat(document.getElementById('invester2').value);
+            const invester3 = parseFloat(document.getElementById('invester3').value);
+            const invester4 = parseFloat(document.getElementById('invester4').value);
+            const invester5 = parseFloat(document.getElementById('invester5').value);
+            const invester6 = parseFloat(document.getElementById('invester6').value);
+            const invester7 = parseFloat(document.getElementById('invester7').value);
+            const invester8 = parseFloat(document.getElementById('invester8').value);
+            const invester9 = parseFloat(document.getElementById('invester9').value);
+            const invester10 = parseFloat(document.getElementById('invester10').value);
+            const general_profit = parseFloat(document.getElementById('general_profit').value);
+
+            const total_capital = invester1 + invester2 + invester3 + invester4 + invester5 + invester6 + invester7 + invester8 + invester9 + invester10;
+
+            function calculateProfit(investment, total_capital, general_profit) {
+                const profit_percentage = (investment / total_capital) * 100;
+                const actual_profit = (profit_percentage / 100) * general_profit;
+                const business_maintenance = 0.30 * actual_profit;
+                const actual_profit_after_maintenance = actual_profit - business_maintenance;
+                return {
+                    actual_profit: Math.round(actual_profit),
+                    business_maintenance: Math.round(business_maintenance),
+                    actual_profit_after_maintenance: Math.round(actual_profit_after_maintenance)
+                };
+            }
+
+            const investors = [invester1, invester2, invester3, invester4, invester5, invester6, invester7, invester8, invester9, invester10];
+            let resultHTML = `<p>The total capital from all the investors gives us a total of: ${total_capital}</p>`;
+
+            investors.forEach((investment, index) => {
+                const { actual_profit, business_maintenance, actual_profit_after_maintenance } = calculateProfit(investment, total_capital, general_profit);
+                resultHTML += `
+                    <p class="profit-before-maintenance">The profit for investor ${index + 1} before maintenance is: ${actual_profit}</p>
+                    <p>The business maintenance cost for investor ${index + 1} is: ${business_maintenance}</p>
+                    <p class="profit-after-maintenance">The profit for investor ${index + 1} after maintenance is: ${actual_profit_after_maintenance}</p>
+                `;
+            });
+
+            document.getElementById('result').innerHTML = resultHTML;
+        }
+    </script>
+</body>
+</html>
