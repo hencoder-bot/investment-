@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Urgency Index</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: tomato;
+            color: #fff;
+        }
+        .content {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .question {
+            margin-bottom: 15px;
+            background-color: blue;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="content"></div>
+        <h1>The Urgency Index</h1>
+        <p>According to the 7 Habits of Highly Effective People, the Urgency Index is a tool to help individuals understand their mindset towards urgency and time management. It consists of 16 questions that measure how often you feel pressured by time constraints and how you handle urgent tasks.</p>
+        <p>As you read each statement, select the number that best describes your response (0=Never, 2=Sometimes, 4=Always).</p>
+        <form id="urgencyForm">
+            <!-- Questions here -->
+            <div class="question">
+                <label>1. I seem to do my best work when I’m under pressure.</label><br>
+                <input type="number" name="q1" min="0" max="4" step="2" required>
+            </div>
+            <div class="question">
+                <label>2. I often blame the rush and press of external things for my failure to spend deep, introspective time with myself.</label><br>
+                <input type="number" name="q2" min="0" max="4" step="2" required>
+            </div>
+            <div class="question">
+                <label>3. I’m often frustrated by the slowness of people and things around me. I hate to wait or stand in line.</label><br>
+                <input type="number" name="q3" min="0" max="4" step="2" required>
+            </div>
+            <div class="question">
+                <label>4. I feel guilty when I take time off work.</label><br>
+                <input type="number" name="q4" min="0" max="4" step="2" required>
+            </div>
+            <div class="question">
+                <label>5. I always seem to be rushing between places and events.</label><br>
+                <input type="number" name="q5" min="0" max="4" step="2" required>
+            </div>
+            <div class="question">
+                <label>6. I frequently find myself pushing people away so that I can finish a project.</label><br>
+                <input type="number" name="q6" min="0" max="4" step="2" required>
+            </div>
+            <div class="question">
+                <label>7. I feel anxious when I’m out of touch with the office for more than a few minutes.</label><br>
+                <input type="number" name="q7" min="0" max="4" step="2" required>
+            </div>
+            <div class="question">
+                <label>8. I’m often preoccupied with one thing when I’m doing something else.</label><br>
+                <input type="number" name="q8" min="0" max="4" step="2" required>
+            </div>
+            <div class="question">
+                <label>9. I’m at my best when I’m handling a crisis situation.</label><br>
+                <input type="number" name="q9" min="0" max="4" step="2" required>
+            </div>
+            <div class="question"></div>
+                <label>10. The adrenaline rush from a new crisis seems more satisfying to me than the steady accomplishment of long-term results.</label><br>
+                <input type="number" name="q10" min="0" max="4" step="2" required>
+            </div>
+            <div class="question"></div>
+                <label>11. I often give up quality time with important people in my life to handle a crisis.</label><br>
+                <input type="number" name="q11" min="0" max="4" step="2" required>
+            </div>
+            <div class="question"></div>
+                <label>12. I assume people will naturally understand if I have to disappoint them or let things go in order to handle a crisis.</label><br>
+                <input type="number" name="q12" min="0" max="4" step="2" required>
+            </div>
+            <div class="question"></div>
+                <label>13. I rely on solving some crisis to give my day a sense of meaning and purpose.</label><br>
+                <input type="number" name="q13" min="0" max="4" step="2" required>
+            </div>
+            <div class="question">
+                <label>14. I often eat lunch or other meals while I work.</label><br>
+                <input type="number" name="q14" min="0" max="4" step="2" required>
+            </div>
+            <div class="question">
+                <label>15. I keep thinking that someday I’ll be able to do what I really want to do.</label><br>
+                <input type="number" name="q15" min="0" max="4" step="2" required>
+            </div>
+            <div class="question"></div>
+                <label>16. Accomplishing a lot of tasks makes me feel like I’ve been really productive.</label><br>
+                <input type="number" name="q16" min="0" max="4" step="2" required>
+            </div>
+            <button type="button" onclick="calculateScore()">Submit</button>
+        </form>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculateScore() {
+            const form = document.getElementById('urgencyForm');
+            let totalScore = 0;
+            for (let i = 1; i <= 16; i++) {
+                totalScore += parseInt(form['q' + i].value);
+            }
+            let resultText = '';
+            if (totalScore <= 25) {
+                resultText = 'Low urgency mindset';
+            } else if (totalScore <= 45) {
+                resultText = 'Strong urgency mindset';
+            } else {
+                resultText = 'Urgency addiction';
+            }
+            let summary = '';
+            if (totalScore <= 25) {
+                summary = 'You have a low urgency mindset. This means you are generally relaxed and do not feel pressured by time constraints. You likely manage your time well and prioritize effectively.';
+            } else if (totalScore <= 45) {
+                summary = 'You have a strong urgency mindset. You often feel the need to rush and may experience stress due to time pressures. It is important to find a balance and ensure you are not sacrificing quality for speed.';
+            } else {
+                summary = 'You have an urgency addiction. You thrive on the adrenaline of crises and may neglect important aspects of your life in favor of urgent tasks. It is crucial to address this behavior to avoid burnout and maintain a healthy work-life balance.';
+            }
+            document.getElementById('result').innerText = `Your total score is: ${totalScore}. ${resultText}\n\n${summary}`;
+        }
+    </script>
+    <h2>Key for the Results</h2>
+    <ul>
+        <li>0–25: Low urgency mindset</li>
+        <li>26–45: Strong urgency mindset</li>
+        <li>46+: Urgency addiction</li>
+    </ul>
+    <h2>The Time Management Matrix</h2>
+    <p>The Time Management Matrix, also known as the Eisenhower Matrix, is a tool to help individuals prioritize tasks based on their urgency and importance. According to the 7 Habits of Highly Effective People, tasks can be categorized into four quadrants:</p>
+    <table border="1" cellpadding="10" cellspacing="0">
+        <tr>
+            <th>Quadrant</th>
+            <th>Description</th>
+            <th>Examples</th>
+        </tr>
+        <tr>
+            <td>Quadrant I</td>
+            <td>Urgent and Important</td>
+            <td>Crises, pressing problems, deadline-driven projects</td>
+        </tr>
+        <tr>
+            <td>Quadrant II</td>
+            <td>Not Urgent but Important</td>
+            <td>Prevention, relationship building, planning, recreation</td>
+        </tr>
+        <tr>
+            <td>Quadrant III</td>
+            <td>Urgent but Not Important</td>
+            <td>Interruptions, some calls, some mail, some reports, some meetings</td>
+        </tr>
+        <tr>
+            <td>Quadrant IV</td>
+            <td>Not Urgent and Not Important</td>
+            <td>Trivia, busy work, some mail, some phone calls, time wasters</td>
+        </tr>
+    </table>
+    <p>Effective people focus on Quadrant II activities to achieve long-term goals and maintain a balanced life.</p>
+</body>
+</html>

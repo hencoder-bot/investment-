@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Payment System</title>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideInLeft {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+            background: url('https://img.freepik.com/premium-photo/businessman-financial-loan-negotiation-lender-borrower-meeting-financial-advisor-help-investment-bank-estate-concept_73523-726.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: blue;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .fixed-title {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+            padding: 10px;
+            text-align: center;
+            z-index: 1000;
+        }
+        .fixed-title h1, .fixed-title h2 {
+            color: orange; /* Title color */
+            font-size: 24px; /* Increase font size */
+            margin: 0;
+        }
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 90%;
+            max-width: 1200px;
+            margin-top: 150px; /* Space for fixed title */
+        }
+        .container, .content {
+            padding: 20px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 2s ease-in-out; /* Apply animation */
+            margin-bottom: 20px;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: green; /* Calculated amounts background */
+            border-radius: 5px;
+            color: white; /* Text color for calculated amounts */
+            animation: slideInLeft 1s ease-in-out; /* Slide in animation */
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="text"], input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        input[type="submit"], button {
+            width: 100%;
+            padding: 10px;
+            background-color: #555;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .link {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .content {
+            display: none; /* Initially hidden */
+            overflow-y: auto;
+            max-height: 90vh;
+        }
+    </style>
+</head>
+<body>
+    <div class="fixed-title">
+        <h1>Loan Payment System</h1>
+        <h2>Calculate Your Loan Payments</h2>
+    </div>
+    <div class="wrapper">
+        <div class="container">
+            <form id="loanForm">
+                <label for="principal">Loan Amount:</label>
+                <input type="number" id="principal" name="principal" required>
+
+                <label for="interest_rate">Interest Rate (%):</label>
+                <input type="number" id="interest_rate" name="interest_rate" step="0.01" required>
+
+                <label for="time">Loan Term (years):</label>
+                <input type="number" id="time" name="time" required>
+
+                <label for="fav_pay_amount">Would you like us to calculate the amount to pay the loan faster? (Yes/No):</label>
+                <select id="fav_pay_amount" name="fav_pay_amount" required>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+
+                <div id="monthly_payment_input" style="display: none;">
+                    <label for="monthly_payment">Comfortable Monthly Payment Amount:</label>
+                    <input type="number" id="monthly_payment" name="monthly_payment">
+                </div>
+
+                <label for="payment_system">Payment System:</label>
+                <select id="payment_system" name="payment_system" required>
+                    <option value="monthly">Monthly</option>
+                    <option value="bi-weekly">Bi-Weekly</option>
+                </select>
+
+                <input type="submit" value="Calculate">
+            </form>
+            <div id="result" class="result"></div>
+            <div class="link">
+                <button id="learnMoreButton">Learn more about the Bi-Weekly Payment System</button>
+            </div>
+        </div>
+
+        <div class="content" id="biWeeklyContent">
+            <h1>Bi-Weekly Payment System</h1>
+            <h2>According to "The Automatic Millionaire" by David Bach</h2>
+            <p>
+                The bi-weekly payment system is a powerful financial strategy that can help you pay off your mortgage faster and save a significant amount of money in interest over the life of the loan. This system is prominently featured in David Bach's book, "The Automatic Millionaire," where he explains how making bi-weekly payments can accelerate your path to financial freedom.
+            </p>
+            <p>
+                In a traditional monthly payment system, you make one payment each month, resulting in 12 payments per year. However, with the bi-weekly payment system, you make a payment every two weeks. Since there are 52 weeks in a year, this results in 26 bi-weekly payments, which is equivalent to 13 monthly payments. This extra payment each year can make a significant difference in the amount of interest you pay and the time it takes to pay off your loan.
+            </p>
+            <p>
+                The concept behind the bi-weekly payment system is simple but effective. By making more frequent payments, you reduce the principal balance of your loan faster. This, in turn, reduces the amount of interest that accrues on the loan. Over time, the savings can be substantial, and you can pay off your mortgage years ahead of schedule.
+            </p>
+            <p>
+                One of the key advantages of the bi-weekly payment system is that it aligns with many people's pay schedules. If you are paid bi-weekly, making bi-weekly mortgage payments can be more convenient and easier to manage. It also helps to create a disciplined approach to paying off your mortgage, as the payments are automatically deducted from your account every two weeks.
+            </p>
+            <p>
+                David Bach emphasizes the importance of automation in his book. By setting up automatic bi-weekly payments, you remove the temptation to spend the money elsewhere and ensure that your mortgage payments are always made on time. This "set it and forget it" approach is a cornerstone of "The Automatic Millionaire" philosophy, which advocates for automating your finances to build wealth effortlessly.
+            </p>
+            <p>
+                To illustrate the impact of the bi-weekly payment system, let's consider an example. Suppose you have a $200,000 mortgage with a 30-year term and an interest rate of 4%. With a traditional monthly payment system, your monthly payment would be approximately $955. By the end of the 30 years, you would have paid a total of $343,739, with $143,739 going towards interest.
+            </p>
+            <p>
+                Now, let's switch to the bi-weekly payment system. Instead of making one monthly payment of $955, you make a bi-weekly payment of $477.50. Over the course of a year, you make 26 bi-weekly payments, which is equivalent to 13 monthly payments. By making this extra payment each year, you reduce the principal balance faster and pay less interest over the life of the loan.
+            </p>
+            <p>
+                With the bi-weekly payment system, you would pay off your mortgage in approximately 25 years instead of 30. The total amount paid would be $311,576, with $111,576 going towards interest. This results in a savings of $32,163 in interest and paying off your mortgage five years earlier.
+            </p>
+            <p>
+                The bi-weekly payment system is not limited to mortgages. It can also be applied to other types of loans, such as car loans, student loans, and personal loans. The principle remains the same: by making more frequent payments, you reduce the principal balance faster and save on interest.
+            </p>
+            <p>
+                Implementing the bi-weekly payment system is relatively straightforward. Many lenders offer bi-weekly payment options, and you can set up automatic payments through your bank or mortgage servicer. If your lender does not offer a bi-weekly payment option, you can achieve the same effect by making an extra payment each year or by dividing your monthly payment by 12 and adding that amount to each monthly payment.
+            </p>
+            <p>
+                It's important to note that not all lenders accept bi-weekly payments, and some may charge fees for setting up a bi-weekly payment plan. Before making any changes to your payment schedule, it's essential to check with your lender and understand any potential fees or restrictions.
+            </p>
+            <div class="description">
+                <h2>About the Author</h2>
+                <p>
+                    <strong>Opio Rogers Henry</strong> is a highly skilled professional with a diverse background in various fields. He is a Data Scientist, Police Officer, Computer Programmer, Web Designer, Data Analyst, and a Sunday School Teacher at St. Stephens Nsambya. His extensive experience and expertise make him a valuable resource for anyone seeking innovative business ideas and strategies.
+                </p>
+                <p>
+                    With a strong foundation in data science and analysis, Opio Rogers Henry has the ability to turn complex data into actionable insights, helping businesses make informed decisions. His programming and web design skills enable him to create robust and user-friendly applications that meet the needs of modern businesses.
+                </p>
+                <p>
+                    As a Police Officer, he brings a unique perspective on security and risk management, ensuring that business operations are not only efficient but also secure. His role as a Sunday School Teacher demonstrates his commitment to community service and his ability to communicate effectively with people of all ages.
+                </p>
+                <p>
+                    Opio Rogers Henry is always open to discussing new business ideas and opportunities. His multidisciplinary expertise makes him an ideal partner for collaborative projects aimed at driving innovation and growth. Feel free to reach out to him for consultations, collaborations, or any business-related inquiries.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('fav_pay_amount').addEventListener('change', function() {
+            const favPayAmount = document.getElementById('fav_pay_amount').value;
+            const monthlyPaymentInput = document.getElementById('monthly_payment_input');
+            if (favPayAmount === 'no') {
+                monthlyPaymentInput.style.display = 'block';
+            } else {
+                monthlyPaymentInput.style.display = 'none';
+            }
+        });
+
+        document.getElementById('loanForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const principal = parseFloat(document.getElementById('principal').value);
+            let interest_rate = parseFloat(document.getElementById('interest_rate').value) / 100;
+            const time = parseFloat(document.getElementById('time').value);
+            const payment_system = document.getElementById('payment_system').value;
+            const fav_pay_amount = document.getElementById('fav_pay_amount').value;
+
+            const simple_interest = principal * interest_rate * time;
+            const total_amount = principal + simple_interest;
+
+            let resultText = `<p>The simple interest on your loan is: ${simple_interest.toFixed(2)}</p>`;
+            resultText += `<p>The total amount to be paid after ${time} years is: ${total_amount.toFixed(2)}</p>`;
+
+            if (fav_pay_amount === 'no') {
+                const monthly_payment = parseFloat(document.getElementById('monthly_payment').value);
+                const months_needed = total_amount / monthly_payment;
+                resultText += `<p>You will need approximately ${months_needed.toFixed(2)} months to pay off the loan.</p>`;
+            } else {
+                if (payment_system === 'monthly') {
+                    const monthly_payment = total_amount / (time * 12);
+                    resultText += `<p>You need to pay approximately ${monthly_payment.toFixed(2)} per month to pay off the loan in ${time} years.</p>`;
+                    resultText += `<p>You can also consider using a bi-weekly payment system to pay off your loan faster.</p>`;
+                } else if (payment_system === 'bi-weekly') {
+                    const monthly_payment = total_amount / (time * 12);
+                    const bi_weekly_payment = monthly_payment / 2;
+                    const total_bi_weekly_payments = time * 26;
+                    const total_months = total_bi_weekly_payments / 2;
+                    const total_monthly_payments = time * 12;
+                    const savings = (total_monthly_payments - total_months) * monthly_payment;
+
+                    resultText += `<p>With a bi-weekly payment system, you need to pay approximately ${bi_weekly_payment.toFixed(2)} every two weeks.</p>`;
+                    resultText += `<p>The total number of bi-weekly payments over ${time} years is: ${total_bi_weekly_payments}</p>`;
+                    resultText += `<p>This is equivalent to approximately ${total_months.toFixed(2)} months.</p>`;
+                    resultText += `<p>By using the bi-weekly payment system, you will save approximately ${savings.toFixed(2)} over the monthly payment system.</p>`;
+                }
+            }
+
+            document.getElementById('result').innerHTML = resultText;
+
+            // Add the new section with your name and qualifications
+            const authorSection = `
+                <div class="description">
+                    <h2>About the Author</h2>
+                    <p>
+                        <strong>Opio Rogers Henry</strong> is a highly skilled professional with a diverse background in various fields. He is a Data Scientist, Police Officer, Computer Programmer, Web Designer, Data Analyst, and a Sunday School Teacher at St. Stephens Nsambya. His extensive experience and expertise make him a valuable resource for anyone seeking innovative business ideas and strategies.
+                    </p>
+                    <p>
+                        With a strong foundation in data science and analysis, Opio Rogers Henry has the ability to turn complex data into actionable insights, helping businesses make informed decisions. His programming and web design skills enable him to create robust and user-friendly applications that meet the needs of modern businesses.
+                    </p>
+                    <p>
+                        As a Police Officer, he brings a unique perspective on security and risk management, ensuring that business operations are not only efficient but also secure. His role as a Sunday School Teacher demonstrates his commitment to community service and his ability to communicate effectively with people of all ages.
+                    </p>
+                    <p>
+                        Opio Rogers Henry is always open to discussing new business ideas and opportunities. His multidisciplinary expertise makes him an ideal partner for collaborative projects aimed at driving innovation and growth. Feel free to reach out to him for consultations, collaborations, or any business-related inquiries.
+                    </p>
+                </div>
+            `;
+            document.getElementById('result').insertAdjacentHTML('beforeend', authorSection);
+        });
+
+        document.getElementById('learnMoreButton').addEventListener('click', function() {
+            document.getElementById('biWeeklyContent').style.display = 'block';
+            window.scrollTo(0, document.body.scrollHeight);
+        });
+    </script>
+</body>
+</html>
