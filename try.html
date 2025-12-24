@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE JOINT CASH FLOW PROJECT - Earn As U Buy (EAUB)</title>
+    <style>
+        :root{
+            --accent:#5568d3;
+            --accent-2:#764ba2;
+            --muted:#6b7280;
+            --bg-gradient: linear-gradient(135deg, #f6f8ff 0%, #eef2ff 100%);
+        }
+
+        *{box-sizing:border-box}
+        body{
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 25%, #d32f2f 50%, #fdd835 75%, #1a1a1a 100%);
+            background-size: 400% 400%;
+            animation: govGradient 20s ease infinite;
+            padding: 28px;
+            color: #1f2937;
+            min-height: 100vh;
+            position: relative;
+            background-attachment: fixed;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150%;
+            height: 150%;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Coat_of_arms_of_Uganda.svg/960px-Coat_of_arms_of_Uganda.svg.png?20221003150508');
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.15;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                url('https://www.theibns.org/joomla/images/stories/bnoy2010/Uganda_50000_shillings_back_web.jpg'),
+                url('https://i.ebayimg.com/images/g/nXYAAOSwTFZlM6F5/s-l1200.jpg'),
+                url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUVbGir3txZTPUPHygFQGUS10Mwic6BNG5Iw&s'),
+                url('https://en.numista.com/catalogue/photos/ouganda/6335c4abb89362.84377342-original.jpg'),
+                url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3BQsZbwG8VJZ_LuFvdLQd5nfIejwMTJzDMQ&s'),
+                url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE0yjXzsQB_zcvOdOsdpKywBBmf8bWRPBYyg&s'),
+                url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuxnt_S6QDUZSMFkj0-wrBM1Ui8dk2oyza7g&s'),
+                url('https://i.ebayimg.com/images/g/3AkAAOSwZTZlMNuM/s-l400.jpg');
+            background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+            background-size: 120px 150px, 120px 150px, 120px 150px, 120px 150px, 120px 150px, 120px 150px, 120px 150px, 120px 150px;
+            background-position: 
+                top 20px left 20px,
+                top 20px right 20px,
+                bottom 20px left 20px,
+                bottom 20px right 20px,
+                top 50% left 10px,
+                top 50% right 10px,
+                20% left 15px,
+                80% right 15px;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.12;
+        }
+
+        @keyframes govGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container{
+            max-width:1100px;
+            margin:0 auto;
+            background: #fff;
+            border-radius: 12px;
+            padding: 28px;
+            box-shadow: 0 6px 30px rgba(15, 23, 42, 0.12);
+            position: relative;
+            z-index: 1;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Coat_of_arms_of_Uganda.svg/960px-Coat_of_arms_of_Uganda.svg.png?20221003150508');
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.12;
+        }
+
+
+
+        .header{ text-align:center; margin-bottom:20px; background: rgba(212, 47, 47, 0.85); padding: 20px; border-radius: 10px; color: white; display: flex; align-items: center; justify-content: space-between; position: relative; overflow: hidden; }
+        
+        
+        .header > *{ position: relative; z-index: 1; }
+        .header h1{ font-size:24px; letter-spacing:0.6px; color: white }
+        .header p{ color:rgba(255,255,255,0.9); font-size:13px; margin-top:8px }
+
+        .input-section{ background:#fbfcff; padding:18px; border-radius:10px; margin-bottom:20px }
+
+        .investor-inputs{ display:grid; grid-template-columns: repeat(auto-fit, minmax(320px,1fr)); gap:18px }
+        .investor-group{ background:#fff; padding:14px; border-radius:8px; box-shadow: 0 4px 20px rgba(99,102,241,0.06); }
+        .investor-group label{ display:block; margin-bottom:6px; font-size:13px; color:var(--accent-2) }
+        .investor-group input{ width:100%; padding:10px 12px; border:1px solid #e6e9ef; border-radius:8px; font-size:14px }
+        .investor-photo{ padding:6px 0 }
+
+        .profit-input-group{ margin-top:14px; padding:12px; border-radius:8px; background:#fff; border:1px solid #eef2ff }
+        .profit-input-group input{ width:220px }
+
+        .button-group{ display:flex; gap:10px; justify-content:center; margin-top:14px }
+        button{ border-radius:8px; padding:10px 16px; border:none; cursor:pointer; font-weight:600 }
+        .btn-calculate{ background:var(--accent); color:white; box-shadow: 0 8px 20px rgba(86,100,199,0.12) }
+        .btn-calculate[disabled]{ opacity:0.6; cursor:not-allowed }
+        .btn-reset{ background:#f3f4f6; color:#111827 }
+        .btn-export{ background:var(--accent-2); color:white }
+
+        .results-section{ margin-top:22px }
+        .results-section h2{ color:#111827; font-size:18px; margin-bottom:12px }
+
+        .total-capital-box{ display:flex; justify-content:space-between; align-items:center; padding:12px; border-radius:8px; background:linear-gradient(90deg,#eef2ff, #f7f9ff); border:1px solid #e6f0ff }
+        .total-capital-box p{ margin:0; font-weight:700; color:var(--accent) }
+
+        .investor-card{ background:#fff; padding:12px; border-radius:8px; margin-bottom:12px; border-left:4px solid var(--accent); display:block }
+        .investor-card h3{ color:var(--accent-2); margin-bottom:6px }
+        .profit-row{ display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid #f1f5f9 }
+        .profit-label{ color:var(--muted); font-size:13px }
+        .profit-value{ color:var(--accent); font-weight:700 }
+
+        .avatar{ width:56px; height:56px; border-radius:50%; object-fit:cover; border:2px solid #fff; box-shadow:0 4px 10px rgba(12,18,46,0.08); margin-right:12px }
+        .investor-header{ display:flex; align-items:center }
+
+        .summary-box{ margin-top:10px; padding:14px; border-radius:8px; background:#fff; border:1px solid #eef2ff }
+        .summary-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px }
+        .summary-item{ padding:10px; border-radius:8px; background:#fafbfd; text-align:center }
+        .summary-item-label{ color:var(--muted); font-size:12px }
+        .summary-item-value{ font-size:18px; color:var(--accent); font-weight:800 }
+
+        .error-message{ color:#b91c1c; background:#fff5f5; padding:10px; border-radius:8px; display:none }
+        .field-error{ border-color:#ef4444 !important; box-shadow:0 0 0 3px rgba(239,68,68,0.15) }
+        .visually-hidden{ position:absolute !important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap }
+
+        .small-muted{ font-size:12px; color:var(--muted) }
+        .spinner{ display:inline-block; width:16px; height:16px; border:2px solid rgba(255,255,255,0.3); border-top-color:#fff; border-radius:50%; animation:spin 1s linear infinite; vertical-align:middle; margin-left:8px }
+        @keyframes spin{ to{ transform:rotate(360deg) } }
+
+        @keyframes flagWave {
+            0% { transform: skewY(0deg) rotateZ(0deg); }
+            25% { transform: skewY(-2deg) rotateZ(1deg); }
+            50% { transform: skewY(2deg) rotateZ(-1deg); }
+            75% { transform: skewY(-2deg) rotateZ(1deg); }
+            100% { transform: skewY(0deg) rotateZ(0deg); }
+        }
+
+        .hidden{ display:none }
+
+        @media (max-width:640px){ .investor-inputs{ grid-template-columns:1fr } .profit-input-group input{ width:100% } }
+    </style>
+</head>
+<body>
+        <div class="container">
+        <div class="header">
+                        <img src="https://www.betheladvisors.com/wp-content/uploads/2023/05/develop.png" alt="Develop icon" style="height: 80px; width: auto; margin-right: 20px; animation: flagWave 2s ease-in-out infinite; transform-origin: left center;">
+            <div style="text-align: center; flex: 2;">
+                <h1>THE JOINT CASH FLOW PROJECT<br>Earn As U Buy (EAUB)</h1>
+                <p>GOAL: TO ENABLE INVESTMENT POSSIBILITY FOR SMALL INCOME EARNERS<br>
+                ENCOURAGING FAIR AND TRUSTWORTHY SHARES AND PROFIT DISTRIBUTION AMONG SHAREHOLDERS<br>
+                TO MAINTAIN AND EXPAND AND INCREASE THE DAILY CASH FLOW OF THE CORE MEMBER</p>
+            </div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Flag_of_Uganda.svg/1200px-Flag_of_Uganda.svg.png" style="height: 80px; width: auto; margin-left: 20px; animation: flagWave 2s ease-in-out infinite; transform-origin: left center;">
+        </div>
+
+        <div class="error-message" id="errorMessage" role="alert" aria-live="assertive"></div>
+
+        <div class="input-section">
+            <div class="investor-inputs" id="investorInputs"></div>
+            
+            <div class="profit-input-group">
+                <label for="generalProfit">Enter the general profit to be distributed to the investors:</label>
+                <input type="number" id="generalProfit" placeholder="Enter profit amount" step="0.01">
+            </div>
+
+            <div class="button-group">
+                <button class="btn-calculate" id="calcBtn" onclick="calculateInvestments()" disabled>Calculate Profits <span id="calcSpinner" class="hidden spinner"></span></button>
+                <button class="btn-reset" onclick="resetForm()">Reset</button>
+            </div>
+        </div>
+
+        <div class="results-section hidden" id="resultsSection" aria-live="polite">
+            <div class="total-capital-box">
+                <p>Total Capital from all investors: <span id="totalCapital">0</span></p>
+            </div>
+
+            <h2>Individual Investor Details</h2>
+            <div class="investor-results" id="investorResults"></div>
+
+            <h2>Profit Projections for Each Investor</h2>
+            <div id="individualProfits"></div>
+
+            <h2>Profit Projections for All Investors</h2>
+            <div class="summary-box">
+                <div class="summary-grid" id="allProfitsSummary"></div>
+                <div class="summary-grid" id="maintenanceSummary" style="margin-top:10px"></div>
+                <div style="margin-top: 12px; display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap">
+                    <p class="small-muted" style="margin:0">Total Business Maintenance Cost for All Investors: <strong id="totalMaintenance" style="color:var(--accent);">0</strong></p>
+                    <div style="display:flex; gap:8px">
+                        <button class="btn-export" id="exportCsvBtn" onclick="exportCSV()">Export CSV</button>
+                        <button class="btn-reset" onclick="copySummary()">Copy Summary</button>
+                        <button class="btn-export" onclick="downloadPDF()">Download Results (PDF)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Utility formatting
+        function formatCurrency(value){
+            return Number(value).toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2});
+        }
+
+        function formatInteger(value){
+            return Number(value).toLocaleString();
+        }
+
+        // Generate investor input fields
+        function initializeForm() {
+            const container = document.getElementById('investorInputs');
+            container.innerHTML = '';
+
+            for (let i = 1; i <= 6; i++) {
+                const group = document.createElement('div');
+                group.className = 'investor-group';
+                group.innerHTML = `
+                    <label for="investorFirst${i}">Investor ${i} - First Name (Given Name):</label>
+                    <input type="text" id="investorFirst${i}" placeholder="Enter first name" class="investor-name" autocomplete="given-name" aria-required="true">
+                    <label for="investorMiddle${i}">Christian/Middle Name:</label>
+                    <input type="text" id="investorMiddle${i}" placeholder="Enter christian/middle name" class="investor-name" autocomplete="additional-name" aria-required="true">
+                    <label for="investorPhoto${i}">Photo (JPEG/PNG):</label>
+                    <input type="file" id="investorPhoto${i}" accept="image/*" class="investor-photo" aria-required="true">
+                    <label for="investorAmount${i}">Investment Amount:</label>
+                    <input type="number" id="investorAmount${i}" placeholder="Enter amount" step="0.01" min="0.01" class="investor-amount" aria-required="true">
+                `;
+                container.appendChild(group);
+            }
+        }
+
+        function calculateProfit(investment, totalCapital, generalProfit) {
+            const profitPercentage = totalCapital > 0 ? (investment / totalCapital) : 0;
+            const exactProfit = profitPercentage * generalProfit;
+            const maintenance = 0.30 * exactProfit;
+            const net = exactProfit - maintenance;
+            return { exactProfit, maintenance, net };
+        }
+
+        function setLoading(loading){
+            const calcBtn = document.getElementById('calcBtn');
+            const spinner = document.getElementById('calcSpinner');
+            if(loading){
+                calcBtn.setAttribute('disabled','');
+                spinner.classList.remove('hidden');
+            } else {
+                calcBtn.removeAttribute('disabled');
+                spinner.classList.add('hidden');
+            }
+        }
+
+        function validateForm(showErrors=false){
+            let valid = true;
+            const errorFields = [];
+            for (let i = 1; i <= 6; i++) {
+                const first = document.getElementById(`investorFirst${i}`);
+                const middle = document.getElementById(`investorMiddle${i}`);
+                const amount = document.getElementById(`investorAmount${i}`);
+                const photo = document.getElementById(`investorPhoto${i}`);
+                [first, middle, amount, photo].forEach(el=> el.classList.remove('field-error'));
+                if (!first.value.trim()) { valid=false; errorFields.push(first); }
+                if (!middle.value.trim()) { valid=false; errorFields.push(middle); }
+                const amt = parseFloat(amount.value);
+                if (isNaN(amt) || amt <= 0) { valid=false; errorFields.push(amount); }
+                if (!photo.files || photo.files.length === 0) { valid=false; errorFields.push(photo); }
+            }
+            const gp = document.getElementById('generalProfit');
+            if (isNaN(parseFloat(gp.value)) || parseFloat(gp.value) <= 0) { valid=false; errorFields.push(gp); }
+            if (showErrors) errorFields.forEach(el=> el.classList.add('field-error'));
+            document.getElementById('calcBtn').disabled = !valid;
+            return valid;
+        }
+
+        async function calculateInvestments() {
+            const errorMessage = document.getElementById('errorMessage');
+            errorMessage.style.display = 'none';
+            if (!validateForm(true)) { return; }
+            setLoading(true);
+
+            try {
+                // Read photos (required) and other inputs
+                const readPromises = [];
+                for (let i = 1; i <= 6; i++) {
+                    const first = document.getElementById(`investorFirst${i}`).value.trim();
+                    const middle = document.getElementById(`investorMiddle${i}`).value.trim();
+                    const amount = parseFloat(document.getElementById(`investorAmount${i}`).value);
+                    const photoInput = document.getElementById(`investorPhoto${i}`);
+
+                    if (!first || !middle || isNaN(amount) || amount <= 0) {
+                        throw new Error(`Please fill in First name, Christian/Middle name and a valid amount for each investor`);
+                    }
+
+                    if (!photoInput || !photoInput.files || photoInput.files.length === 0) {
+                        throw new Error(`Please select a photo for investor ${i}`);
+                    }
+
+                    const file = photoInput.files[0];
+                    // create a promise to read file as data URL
+                    const p = new Promise((resolve, reject) => {
+                        const reader = new FileReader();
+                        reader.onload = () => resolve({ index: i, dataUrl: reader.result, first, middle, amount });
+                        reader.onerror = () => reject(new Error('Failed to read photo for investor ' + i));
+                        reader.readAsDataURL(file);
+                    });
+                    readPromises.push(p);
+                }
+
+                const readResults = await Promise.all(readPromises);
+                const investors = [];
+                readResults.forEach(r => {
+                    const fullName = `${r.first} ${r.middle}`;
+                    investors.push({ name: fullName, amount: r.amount, photo: r.dataUrl });
+                });
+
+                const generalProfit = parseFloat(document.getElementById('generalProfit').value);
+                if (isNaN(generalProfit) || generalProfit <= 0) {
+                    throw new Error('Please enter a valid general profit amount');
+                }
+
+                // Calculate totals
+                const totalCapital = investors.reduce((sum, inv) => sum + inv.amount, 0);
+
+                // Display results
+                document.getElementById('resultsSection').classList.remove('hidden');
+                document.getElementById('totalCapital').textContent = formatCurrency(totalCapital);
+
+                // Display individual investor details
+                let investorDetailsHTML = '';
+                let totalMaintenanceCost = 0;
+                let totalProfitAfterMaintenance = 0;
+
+                // Compute precise profits first
+                const rawProfits = investors.map(inv => calculateProfit(inv.amount, totalCapital, generalProfit));
+                const totalNetExact = rawProfits.reduce((s,p)=> s + p.net, 0);
+
+                // Round to 2 decimals and reconcile remainder to last investor
+                let runningSum = 0;
+                investors.forEach((investor, index) => {
+                    const p = rawProfits[index];
+                    const profitBefore = Number(p.exactProfit.toFixed(2));
+                    const maintenance = Number(p.maintenance.toFixed(2));
+                    let net = Number(p.net.toFixed(2));
+                    if (index === investors.length - 1) {
+                        const diff = Number((totalNetExact - runningSum).toFixed(2)) - net;
+                        net = Number((net + diff).toFixed(2));
+                    }
+                    runningSum = Number((runningSum + net).toFixed(2));
+
+                    totalMaintenanceCost = Number((totalMaintenanceCost + maintenance).toFixed(2));
+                    totalProfitAfterMaintenance = Number((totalProfitAfterMaintenance + net).toFixed(2));
+
+                    investorDetailsHTML += `
+                        <div class="investor-card">
+                            <div class="investor-header">
+                                <img src="${investor.photo || ''}" alt="Photo of ${investor.name}" class="avatar">
+                                <h3>${investor.name}</h3>
+                            </div>
+                            <div class="profit-row">
+                                <span class="profit-label">Investment Amount:</span>
+                                <span class="profit-value">${formatCurrency(investor.amount)}</span>
+                            </div>
+                            <div class="profit-row">
+                                <span class="profit-label">Profit before maintenance:</span>
+                                <span class="profit-value">${formatCurrency(profitBefore)}</span>
+                            </div>
+                            <div class="profit-row">
+                                <span class="profit-label">Business maintenance cost:</span>
+                                <span class="profit-value">${formatCurrency(maintenance)}</span>
+                            </div>
+                            <div class="profit-row">
+                                <span class="profit-label">Profit after maintenance:</span>
+                                <span class="profit-value">${formatCurrency(net)}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                document.getElementById('investorResults').innerHTML = investorDetailsHTML;
+                document.getElementById('totalMaintenance').textContent = formatInteger(totalMaintenanceCost);
+
+                // Display individual profit projections
+                let individualProfitsHTML = '';
+                investors.forEach((investor, index) => {
+                    const p = rawProfits[index];
+                    const net = Number(p.net.toFixed(2));
+                    const dailyProfit = net;
+                    const weeklyProfit = Number((dailyProfit * 7).toFixed(2));
+                    const monthlyProfit = Number((dailyProfit * 30).toFixed(2));
+                    const yearlyProfit = Number((dailyProfit * 365).toFixed(2));
+
+                    const dailyMaint = Number(p.maintenance.toFixed(2));
+                    const weeklyMaint = Number((dailyMaint * 7).toFixed(2));
+                    const monthlyMaint = Number((dailyMaint * 30).toFixed(2));
+                    const yearlyMaint = Number((dailyMaint * 365).toFixed(2));
+
+                    individualProfitsHTML += `
+                        <div class="investor-card">
+                            <div class="investor-header">
+                                <img src="${investor.photo || ''}" alt="Photo of ${investor.name}" class="avatar">
+                                <h3>${investor.name}</h3>
+                            </div>
+                            <div class="profit-row">
+                                <span class="profit-label">Daily profit (after maintenance):</span>
+                                <span class="profit-value">${formatCurrency(dailyProfit)}</span>
+                            </div>
+                            <div class="profit-row">
+                                <span class="profit-label">Weekly profit:</span>
+                                <span class="profit-value">${formatCurrency(weeklyProfit)}</span>
+                            </div>
+                            <div class="profit-row">
+                                <span class="profit-label">Monthly profit:</span>
+                                <span class="profit-value">${formatCurrency(monthlyProfit)}</span>
+                            </div>
+                            <div class="profit-row">
+                                <span class="profit-label">Yearly profit:</span>
+                                <span class="profit-value">${formatCurrency(yearlyProfit)}</span>
+                            </div>
+                            <div class="profit-row">
+                                <span class="profit-label">Maintenance (daily):</span>
+                                <span class="profit-value">${formatCurrency(dailyMaint)}</span>
+                            </div>
+                            <div class="profit-row">
+                                <span class="profit-label">Maintenance (monthly):</span>
+                                <span class="profit-value">${formatCurrency(monthlyMaint)}</span>
+                            </div>
+                            <div class="profit-row">
+                                <span class="profit-label">Maintenance (yearly):</span>
+                                <span class="profit-value">${formatCurrency(yearlyMaint)}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                document.getElementById('individualProfits').innerHTML = individualProfitsHTML;
+
+                // Display all investors profit projections
+                const weeklyProfitAll = Number((totalProfitAfterMaintenance * 7).toFixed(2));
+                const monthlyProfitAll = Number((totalProfitAfterMaintenance * 30).toFixed(2));
+                const yearlyProfitAll = Number((totalProfitAfterMaintenance * 365).toFixed(2));
+
+                const allProfitsSummary = `
+                    <div class="summary-item">
+                        <div class="summary-item-label">Daily Profit</div>
+                        <div class="summary-item-value">${formatCurrency(totalProfitAfterMaintenance)}</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-item-label">Weekly Profit</div>
+                        <div class="summary-item-value">${formatCurrency(weeklyProfitAll)}</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-item-label">Monthly Profit</div>
+                        <div class="summary-item-value">${formatCurrency(monthlyProfitAll)}</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-item-label">Yearly Profit</div>
+                        <div class="summary-item-value">${formatCurrency(yearlyProfitAll)}</div>
+                    </div>
+                `;
+
+                document.getElementById('allProfitsSummary').innerHTML = allProfitsSummary;
+
+                // Maintenance totals (daily, monthly, yearly)
+                const maintenanceMonthlyAll = Number((totalMaintenanceCost * 30).toFixed(2));
+                const maintenanceYearlyAll = Number((totalMaintenanceCost * 365).toFixed(2));
+                const maintenanceSummaryHtml = `
+                    <div class="summary-item">
+                        <div class="summary-item-label">Daily Maintenance</div>
+                        <div class="summary-item-value">${formatCurrency(totalMaintenanceCost)}</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-item-label">Monthly Maintenance</div>
+                        <div class="summary-item-value">${formatCurrency(maintenanceMonthlyAll)}</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-item-label">Yearly Maintenance</div>
+                        <div class="summary-item-value">${formatCurrency(maintenanceYearlyAll)}</div>
+                    </div>
+                `;
+                document.getElementById('maintenanceSummary').innerHTML = maintenanceSummaryHtml;
+
+                // enable export button
+                document.getElementById('exportCsvBtn').disabled = false;
+                setLoading(false);
+
+                // store current dataset for export/copy
+                window.__lastCalculation = { investors, totalCapital, totalMaintenanceCost, totalProfitAfterMaintenance };
+
+            } catch (error) {
+                errorMessage.textContent = error.message;
+                errorMessage.style.display = 'block';
+                document.getElementById('resultsSection').classList.add('hidden');
+                setLoading(false);
+            }
+        }
+
+        function exportCSV(){
+            const data = window.__lastCalculation;
+            if(!data) return alert('Run calculation first');
+            const rows = [
+                ['Name','Investment','Profit before maintenance','Business maintenance','Profit after maintenance']
+            ];
+            data.investors.forEach(inv => {
+                const p = calculateProfit(inv.amount, data.totalCapital, parseFloat(document.getElementById('generalProfit').value));
+                rows.push([inv.name, inv.amount.toFixed(2), p.exactProfit.toFixed(2), p.maintenance.toFixed(2), p.net.toFixed(2)]);
+            });
+
+            const csvContent = rows.map(r => r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'investment_summary.csv';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function copySummary(){
+            const data = window.__lastCalculation;
+            if(!data) return alert('Run calculation first');
+            let text = `Total Capital: ${formatCurrency(data.totalCapital)}\nTotal Maintenance (daily): ${formatCurrency(data.totalMaintenanceCost)}\nDaily Profit (all): ${formatCurrency(data.totalProfitAfterMaintenance)}\n`;
+            data.investors.forEach(inv=>{
+                const p = calculateProfit(inv.amount, data.totalCapital, parseFloat(document.getElementById('generalProfit').value));
+                text += `\n${inv.name} - Investment: ${formatCurrency(inv.amount)} - Daily Net: ${formatCurrency(Number(p.net.toFixed(2)))} - Daily Maintenance: ${formatCurrency(Number(p.maintenance.toFixed(2)))}`;
+            });
+            navigator.clipboard.writeText(text).then(()=> alert('Summary copied to clipboard'));
+        }
+
+        function resetForm() {
+            for (let i = 1; i <= 6; i++) {
+                document.getElementById(`investorFirst${i}`).value = '';
+                document.getElementById(`investorMiddle${i}`).value = '';
+                document.getElementById(`investorPhoto${i}`).value = '';
+                document.getElementById(`investorAmount${i}`).value = '';
+            }
+            document.getElementById('generalProfit').value = '';
+            document.getElementById('resultsSection').classList.add('hidden');
+            document.getElementById('errorMessage').style.display = 'none';
+            window.__lastCalculation = null;
+            document.getElementById('exportCsvBtn').disabled = true;
+        }
+
+        // Initialize form on page load
+        window.addEventListener('load', () => {
+            initializeForm();
+            document.getElementById('exportCsvBtn').disabled = true;
+            const inputs = document.querySelectorAll('.investor-name, .investor-amount, .investor-photo, #generalProfit');
+            document.getElementById('generalProfit').setAttribute('aria-label','General profit amount');
+            document.querySelectorAll('img[alt="Develop icon"]').forEach(img=> img.setAttribute('alt','Develop icon, decorative'));
+            inputs.forEach(el => {
+                el.addEventListener('input', () => validateForm(false));
+                el.addEventListener('change', () => validateForm(false));
+            });
+
+            // Inject print CSS to export only results section
+            const styleEl = document.createElement('style');
+            styleEl.textContent = `
+            @media print {
+                body * { visibility: hidden !important; }
+                #resultsSection, #resultsSection * { visibility: visible !important; }
+                #resultsSection { position: absolute; left: 0; top: 0; width: 100%; }
+                .button-group, .btn-export, .btn-reset { display: none !important; }
+            }
+            `;
+            document.head.appendChild(styleEl);
+        });
+
+        function downloadPDF(){
+            if(document.getElementById('resultsSection').classList.contains('hidden')){
+                alert('Run calculation first');
+                return;
+            }
+            window.print();
+        }
+    </script>
+    
+    <!-- Banknote images -->
+    <img src="https://www.theibns.org/joomla/images/stories/bnoy2010/Uganda_50000_shillings_back_web.jpg" style="position: fixed; top: 20px; left: 20px; width: 100px; height: 130px; opacity: 0.12; pointer-events: none; z-index: 0;">
+    <img src="https://i.ebayimg.com/images/g/nXYAAOSwTFZlM6F5/s-l1200.jpg" style="position: fixed; top: 20px; right: 20px; width: 100px; height: 130px; opacity: 0.12; pointer-events: none; z-index: 0;">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUVbGir3txZTPUPHygFQGUS10Mwic6BNG5Iw&s" style="position: fixed; bottom: 20px; left: 20px; width: 100px; height: 130px; opacity: 0.12; pointer-events: none; z-index: 0;">
+    <img src="https://en.numista.com/catalogue/photos/ouganda/6335c4abb89362.84377342-original.jpg" style="position: fixed; bottom: 20px; right: 20px; width: 100px; height: 130px; opacity: 0.12; pointer-events: none; z-index: 0;">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3BQsZbwG8VJZ_LuFvdLQd5nfIejwMTJzDMQ&s" style="position: fixed; top: 50%; left: 10px; width: 100px; height: 130px; opacity: 0.12; pointer-events: none; z-index: 0; transform: translateY(-50%);">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE0yjXzsQB_zcvOdOsdpKywBBmf8bWRPBYyg&s" style="position: fixed; top: 50%; right: 10px; width: 100px; height: 130px; opacity: 0.12; pointer-events: none; z-index: 0; transform: translateY(-50%);">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuxnt_S6QDUZSMFkj0-wrBM1Ui8dk2oyza7g&s" style="position: fixed; top: 20%; left: 15px; width: 100px; height: 130px; opacity: 0.12; pointer-events: none; z-index: 0;">
+    <img src="https://i.ebayimg.com/images/g/3AkAAOSwZTZlMNuM/s-l400.jpg" style="position: fixed; bottom: 20%; right: 15px; width: 100px; height: 130px; opacity: 0.12; pointer-events: none; z-index: 0;">
+    
+    <!-- Uganda National Flag -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Flag_of_Uganda.svg/1200px-Flag_of_Uganda.svg.png" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 400px; height: 250px; opacity: 0.1; pointer-events: none; z-index: 0;">
+</body>
+</html>
